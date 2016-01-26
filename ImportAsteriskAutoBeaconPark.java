@@ -1,30 +1,11 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-//------------------------------------------------------------------------------
-//
-// PushBotAuto
-//
-/**
- * Extends the PushBotTelemetry and PushBotHardware classes to provide a basic
- * autonomous operational mode for the Push Bot.
- *
- * @author SSI Robotics
- * @version 2015-08-01-06-01
- */
-public class ImportAsteriskAutoRedBeaconPark extends ImportAsteriskTelemetry
+
+public class ImportAsteriskAutoBeaconPark extends ImportAsteriskTelemetry
 
 {
-    //--------------------------------------------------------------------------
-    //
-    // v_state
-    //
-    //--------
-    // This class member remembers which state is currently active.  When the
-    // start method is called, the state will be initialized (0).  When the loop
-    // starts, the state will change from initialize to state_1.  When state_1
-    // actions are complete, the state will change to state_2.  This implements
-    // a state machine for 0the loop method.
-    //--------
+    int directionModifier = 1; // This is what allows us to unify the code chain. 1 goes in the direction of red, -1 goes in the direction of blue. 
+    
     int v_state = 0;
 
     int first_drive = 5800;
@@ -42,7 +23,7 @@ public class ImportAsteriskAutoRedBeaconPark extends ImportAsteriskTelemetry
      *
      * The system calls this member when the class is instantiated.
      */
-    public ImportAsteriskAutoRedBeaconPark ()
+    public ImportAsteriskAutoBeaconPark ()
 
     {
         //
@@ -57,36 +38,14 @@ public class ImportAsteriskAutoRedBeaconPark extends ImportAsteriskTelemetry
 
     } // PushBotAuto::PushBotAuto
 
-    //--------------------------------------------------------------------------
-    //
-    // start
-    //
-    /**
-     * Performs any actions that are necessary when the OpMode is enabled.
-     *
-     * The system calls this member once when the OpMode is enabled.
-     */
     @Override public void start ()
 
     {
         super.start ();
-
-        //
-        // Reset the motor encoders on the drive wheels.
-        //
         reset_drive_encoders ();
 
-    } // PushBotAuto::start
+    }
 
-    //--------------------------------------------------------------------------
-    //
-    // loop
-    //
-    /**
-     * Implement a state machine that controls the robot during auto-operation.
-     *
-     * The system calls this member repeatedly while the OpMode is running.
-     */
     static int[] l_times = new int [3];
     @Override public void loop ()
 
@@ -175,7 +134,7 @@ public class ImportAsteriskAutoRedBeaconPark extends ImportAsteriskTelemetry
             //
             case 3:
                 run_using_encoders ();
-                set_drive_power (-leftRightRatio*speed, speed);
+                set_drive_power ((-directionModifier)*leftRightRatio*speed, directionModifier*speed);
                 if (have_drive_encoders_reached (turn, turn))
                 {
                     reset_drive_encoders ();
