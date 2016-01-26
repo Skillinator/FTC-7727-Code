@@ -18,75 +18,47 @@ import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.util.Log;
 
-//------------------------------------------------------------------------------
-//
-// PushBotHardware
-//
-//--------
-// Extends the OpMode class to provide a single hardware access point for the
-// Push Bot.
-//--------
+/*
+ * ImportAsteriskHardware
+ * Last Updated 1/26/2016
+ * 
+ * This serves to clean up our other Java OpModes by automatically declaring all our
+ * motors and servos at once. 
+ */
+
 public class ImportAsteriskHardware extends OpMode
 {
 
-    //--------------------------------------------------------------------------
-    //
-    // v_dc_motor_controller_drive
-    //
-    //--------
-    // This class member manages the aspects of the left drive motor.
-    //--------
+    // Declare motor controllers. Drive manages drive (obviously) while aux1 handles auxillary motors
     private DcMotorController v_dc_motor_controller_drive;
     private DcMotorController v_dc_motor_controller_aux1;
-
-    //--------------------------------------------------------------------------
-    //
-    // v_motor_left_drive
-    // v_channel_left_drive
-    //
-    //--------
-    // These class members manage the aspects of the left drive motor.
-    //--------
+    
+    // Define left and right drive motors
     private DcMotor v_motor_left_drive;
     final int v_channel_left_drive = 1;
 
-    //--------------------------------------------------------------------------
-    //
-    // v_motor_right_drive
-    // v_channel_right_drive
-    //
-    //--------
-    // These class members manage the aspects of the right drive motor.
-    //--------
+    private DcMotor v_motor_right_drive;
+    final int v_channel_right_drive = 2;
+    
+    // This is the motor connected to the winch that handles the "bulldozer" deployment.
     private DcMotor v_motor_bulldozer;
     final int v_channel_bulldozer=3;
-
+    
+    // Here we have the servo for the main arm. 
     public Servo armServo;
     final int v_channel_armServo = 1;
 
-    //--------------------------------------------------------------------------
-    //
-    // PushBotHardware
-    //
-    //--------
-    // Constructs the class.
-    //;o
-    // The system calls this member when the class is instantiated.
-    //--------
+
     public ImportAsteriskHardware()
 
     {
-        //
-        // Initialize base classes.
-        //
-        // All via self-construction.
+       
+       // Nothing really useful happens in here.
 
-        //
-        // Initialize class members.
-        //
-        // All via self-construction.
-
-    } // PushBotManual::PushBotHardware
+    }
+    
+    // This is a pretty large string of camera stuff. We don't actually use any of it right now so it's not really useful,
+    // But I don't want to start chopping things off without an IDE to make sure I don't break anything in th process.
     private Camera camera;
     public CameraPreview preview;
     public Bitmap image;
@@ -125,31 +97,13 @@ public class ImportAsteriskHardware extends OpMode
         byte[] imageBytes = out.toByteArray();
         image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
-    //--------------------------------------------------------------------------
-    //
-    // init
-    //
-    //--------
-    // Performs any actions that are necessary when the OpMode is enabled.
-    //
-    // The system calls this member once when the OpMode is enabled.
-    //--------
+    
+    // Initialize the motors and servos for the robot
     @Override public void init ()
 
     {
         //
-        // Use the hardwareMap to associate class members to hardware ports.
-        //
-        // Note that the names of the devices (i.e. arguments to the get method)
-        // must match the names specified in the configuration file created by
-        // the FTC Robot Controller (Settings-->Configure Robot).
-        //
-
-        //
         // Connect the drive wheel motors.
-        //
-        // The direction of the right motor is reversed, so joystick inputs can
-        // be more generically applied.
         //
         v_dc_motor_controller_drive
                 = hardwareMap.dcMotorController.get("drive");
@@ -165,7 +119,7 @@ public class ImportAsteriskHardware extends OpMode
         v_motor_bulldozer.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
         
         armServo = hardwareMap.servo.get("armservo");
-        armServo.setPosition(0.5);
+        armServo.setPosition(0.0);
 
         if(((FtcRobotControllerActivity) hardwareMap.appContext).initializeCamera) {
 
@@ -183,7 +137,7 @@ public class ImportAsteriskHardware extends OpMode
 
             ((FtcRobotControllerActivity) hardwareMap.appContext).initPreview(camera, this, previewCallback);
         }
-    } // PushBotHardware::init
+    }
 
     public int highestColor(int red, int green, int blue){
         int[] color = {red,green,blue};
@@ -230,64 +184,31 @@ public class ImportAsteriskHardware extends OpMode
         return colorString;
     }
 
-    //--------------------------------------------------------------------------
-    //
-    // start
-    //
-    //--------
-    // Performs any actions that are necessary when the OpMode is enabled.
-    //
-    // The system calls this member once when the OpMode is enabled.
-    //--------
+
     @Override public void start ()
 
     {
-        //
-        // Only actions that are common to all Op-Modes (i.e. both automatic and
-        // manual) should be implemented here.
-        //
-        // This method is designed to be overridden.
-        //
 
-    } // PushBotHardware::start
+        // This OpMode isn't supposed to have any function. This should just be overridden.
 
-    //--------------------------------------------------------------------------
-    //
-    // loop
-    //
-    //--------
-    // Performs any actions that are necessary while the OpMode is running.
-    //
-    // The system calls this member repeatedly while the OpMode is running.
-    //--------
+    }
+
     @Override public void loop ()
 
     {
-        //
-        // Only actions that are common to all OpModes (i.e. both auto and\
-        // manual) should be implemented here.
-        //
-        // This method is designed to be overridden.
-        //
+        
+        // This OpMode isn't supposed to have any function. This should just be overridden.
 
-    } // PushBotHardware::loop
+    }
 
-    //--------------------------------------------------------------------------
-    //
-    // stop
-    //
-    //--------
-    // Performs any actions that are necessary when the OpMode is disabled.
-    //
-    // The system calls this member once when the OpMode is disabled.
-    //--------
+  
     @Override public void stop ()
     {
         //
         // Nothing needs to be done for this OpMode.
         //
 
-    } // PushBotHardware::stop
+    }
 
     //--------------------------------------------------------------------------
     //
