@@ -1,6 +1,11 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-
+/*
+ * ImportAsteriskDriveBase
+ * Last Updated 1/26/2016
+ *
+ * This is the teleop drive code for the robot. Pretty basic stuff going on in here, frankly.
+ */
 public class ImportAsteriskDriveBase extends ImportAsteriskTelemetry
 
 {
