@@ -182,26 +182,9 @@ public class ImportAsteriskAutoBeaconPark extends ImportAsteriskTelemetry
                 }
                 break;
             case 7:
-                if(!armStartInit) {
-                    armStart = System.currentTimeMillis();
-                    armStartInit = true;
-                }
-                v_motor_autoArm.setPower(-0.15);
-                if((System.currentTimeMillis() - armStart) > 2000){
-                    v_motor_autoArm.setPower(0.0);
-                    v_state++;
-                    triggered = true;
-                }
-
+                armServo.setPosition(1.0);
                 break;
-            case 8:
-                climberServo.setPosition(1.0);
-            //
-            // Perform no action - stay in this case until the OpMode is stopped.
-            // This method will still be called regardless of the state machine.
-            //
             default:
-                v_motor_autoArm.setPower(0.0);
                 //
                 // The autonomous actions have been accomplished (i.e. the state has
                 // transitioned into its final state.
