@@ -45,10 +45,6 @@ public class ImportAsteriskTelemetry extends ImportAsteriskHardware
                                 + ", "
                                 + a_right_encoder_count ()
                 );
-        telemetry.addData(
-                "Servo Position:",
-                triggerServo.getPosition()
-        );
     } // PushBotTelemetry::loop
 
 } // PushBotTelemetry
