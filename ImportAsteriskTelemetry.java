@@ -1,16 +1,14 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-//------------------------------------------------------------------------------
-//
-// PushBotTelemetry
-//
-/**
- * Extends the PushBotHardware class to provide basic telemetry for the Push
- * Bot.
- *
- * @author SSI Robotics
- * @version 2015-08-02-13-57
+
+/*
+ * ImportAsteriskTelemetry
+ * Last Updated 1/26/2016
+ * 
+ * This file serves to report back telemetry information to the drive station phone.
+ * Not a whole lot of interesting stuff going on here.
  */
+ 
 public class ImportAsteriskTelemetry extends ImportAsteriskHardware
 
 {
