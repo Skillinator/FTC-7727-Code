@@ -58,23 +58,11 @@ public class ImportAsteriskHardware extends OpMode
     //--------
     // These class members manage the aspects of the right drive motor.
     //--------
-    private DcMotor v_motor_right_drive;
-    final int v_channel_right_drive = 2;
-
-    public DcMotor v_motor_autoArm;
-    final int v_channel_autoArm = 3;
-
-    public DcMotor v_motor_winch;
-    final int v_channel_winch=4;
-
-    public Servo triggerServo;
-    final int v_channel_triggerServo = 1;
-
-    public Servo climberServo;
-    final int v_channel_climberServo = 2;
+    private DcMotor v_motor_bulldozer;
+    final int v_channel_bulldozer=3;
 
     public Servo armServo;
-    final int v_channel_armServo = 3;
+    final int v_channel_armServo = 1;
 
     //--------------------------------------------------------------------------
     //
@@ -173,18 +161,9 @@ public class ImportAsteriskHardware extends OpMode
 
         v_motor_right_drive = hardwareMap.dcMotor.get ("rightdrive");
 
-        v_motor_autoArm = hardwareMap.dcMotor.get ("autoarm");
-        v_motor_autoArm.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
-
-        v_motor_winch = hardwareMap.dcMotor.get("winch");
-        v_motor_winch.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
-
-        triggerServo = hardwareMap.servo.get("triggerservo");
-        triggerServo.setPosition(0.5);
-
-        climberServo = hardwareMap.servo.get("climberservo");
-        climberServo.setPosition(0.0);
-
+        v_motor_bulldozer = hardwareMap.dcMotor.get("winch");
+        v_motor_bulldozer.setMode(DcMotorController.RunMode.RUN_WITHOUT_ENCODERS);
+        
         armServo = hardwareMap.servo.get("armservo");
         armServo.setPosition(0.5);
 
