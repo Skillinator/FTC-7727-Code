@@ -81,27 +81,13 @@ public class ImportAsteriskDriveBase extends ImportAsteriskTelemetry
 
         set_drive_power (l_left_drive_power, l_right_drive_power);
 
-        if(gamepad2.left_bumper)
-            triggerServo.setPosition(1.0);
-        if(gamepad2.right_bumper)
-            triggerServo.setPosition(0.0);
-        if(gamepad2.left_bumper && gamepad2.right_bumper)
-            triggerServo.setPosition(0.5);
-
-        if(gamepad2.left_trigger > 0.5){
-            climberServo.setPosition(1.0);
-        }else{
-            climberServo.setPosition(0.0);
-        }
-
         if(gamepad2.right_trigger > 0.5){
             armServo.setPosition(0);
         }else{
             armServo.setPosition(1.0);
         }
 
-        v_motor_autoArm.setPower(-gamepad2.left_stick_y/2);
-        v_motor_winch.setPower(-gamepad2.right_stick_y/2);
+        v_motor_bulldozer.setPower(-gamepad2.right_stick_y/2);
         //
         // Send telemetry data to the driver station.
         //
